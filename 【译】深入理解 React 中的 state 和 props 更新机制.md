@@ -36,9 +36,9 @@ class ClickCounter extends React.Component {
 }
 ```
 
-我还添加了 `componentDidUpdate` 的生命周期方法。这里我们需要理解，React 在 `commit` 阶段是如何添加 [effects](https://github.com/shujer/Blog/issues/1) 并调用这个生命周期的。
+这里添加了 `componentDidUpdate` 的生命周期方法。我们需要理解，React 在 `commit` 阶段是如何添加 [effects](https://github.com/shujer/Blog/issues/1) 并调用这个生命周期的。
 
-在这篇文章，我想要向你们说明 React 如何处理状态更新和构建 `effects list` 的。我们将了解在 `render` 和 `commit` 阶段中一些主要函数中做的事情。
+在这篇文章，我想要向你们说明 React 是如何处理状态更新和构建 `effects list` 的。我们将了解在 `render` 和 `commit` 阶段中一些主要函数中做的事情。
 
 特别地，我们将了解 [completeWork](https://github.com/facebook/react/blob/cbbc2b6c4d0d8519145560bd8183ecde55168b12/packages/react-reconciler/src/ReactFiberCompleteWork.js#L532) 函数中会处理以下这些工作：
 
