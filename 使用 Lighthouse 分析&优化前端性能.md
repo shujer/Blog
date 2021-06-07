@@ -88,6 +88,33 @@ const run = async () => {
 run();
 ```
 
+## 使用 Lighthouse CI
+
+如果想在每次提交代码/打包构建时生成分析报告，我们可以从考虑接入 [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) 。使用方法很简单，以 `GitHub Action` 为例，我们只需要在项目下添加 ` .github/workflows/lighthouseci.yml`:
+
+```js
+name: CI
+on: [push]
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+      - name: run Lighthouse CI
+        run: |
+          sudo npm install -g @lhci/cli@0.7.x
+          lhci autorun
+```
+
+如果想自定义一些配置，我们可以添加配置文件 `lighthouserc.js`。之后，我们可以在 Action 面板看到运行的[结果](https://github.com/shujer/lh-ci-demo/actions)：
+
+![](https://cdn.nlark.com/yuque/0/2021/png/474741/1623072490747-0654977f-302e-46e1-91d6-a28ef6794448.png)
+
 # 🙊 性能指标
 
 ## 用户关心什么
